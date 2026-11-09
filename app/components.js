@@ -1,0 +1,12 @@
+"use client";import Link from "next/link";import {usePathname} from "next/navigation";import {useState} from "react";
+export const Logo=()=><Link href="/" className="flex items-center gap-2 sm:gap-3"><span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-[45%] bg-sun sm:h-16 sm:w-16"><img src="/cherub.png" alt="" className="h-10 w-auto translate-y-1 sm:h-14"/></span><img src="/logo-wordmark.png" alt="WhisperBox" className="h-5 w-auto sm:h-8 lg:h-9"/></Link>;
+const links=[["Cara Kerja","/#cara"],["Kategori","/#kategori"],["Box Pesan","/box"],["Buat Pesan","/create"]];
+export function Nav(){const p=usePathname(),[open,setOpen]=useState(false);
+return <header className="relative flex items-center justify-between px-2 py-3 sm:px-6"><Logo/>
+<nav className={`${open?"flex":"hidden"} absolute left-3 right-3 top-[76px] z-30 flex-col gap-4 rounded-3xl bg-white p-6 text-lg shadow-xl lg:static lg:flex lg:flex-row lg:gap-7 lg:bg-transparent lg:p-0 lg:text-[15px] lg:shadow-none`}>
+{links.map(([t,h])=><Link key={t} href={h} onClick={()=>setOpen(false)} className={`font-medium hover:underline hover:underline-offset-4 ${p===h?"underline underline-offset-4":""}`}>{t}</Link>)}</nav>
+<div className="flex items-center gap-2"><Link href="/create" className="pill relative hidden h-14 bg-pine px-7 text-lg tracking-wide text-sun sm:inline-flex">KIRIM<span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-ink text-[11px] text-sun">5</span></Link>
+<button aria-label="Menu" aria-expanded={open} onClick={()=>setOpen(!open)} className="grid h-11 w-11 place-items-center rounded-full bg-ink text-sun lg:hidden">{open?"✕":"☰"}</button></div></header>}
+export const Footer=()=><footer className="mt-3 flex flex-wrap items-center justify-between gap-4 px-3 py-6 text-sm"><Logo/><div className="flex gap-5 font-medium">{links.map(([t,h])=><Link key={t} href={h} className="hover:underline">{t}</Link>)}</div><p className="w-full text-xs opacity-70">© {new Date().getFullYear()} WhisperBox · SMAN 1 Purwakarta (SMANSA) Confessions</p></footer>;
+export const Shell=({children})=><main className="mx-auto min-h-screen max-w-[1080px] bg-sage p-3 sm:p-4"><Nav/>{children}<Footer/></main>;
+export const ago=t=>{const s=(Date.now()-t)/1000;return s<60?"baru saja":s<3600?`${~~(s/60)} mnt lalu`:s<86400?`${~~(s/3600)} jam lalu`:`${~~(s/86400)} hari lalu`};

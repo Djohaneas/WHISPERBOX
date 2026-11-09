@@ -1,0 +1,8 @@
+export const cats=[["Confess / Cinta","Ungkapkan perasaan tanpa canggung","💌"],["Birthday Wishes","Ucapan ulang tahun yang berkesan","🎂"],["Say Sorry","Permohonan maaf yang tulus","🕊️"],["Thank You","Ucapan terima kasih yang hangat","🌷"],["General Message","Pesan bebas untuk momen apa pun","✨"]];
+export const themes=[["Sunny","#F4BC62","#0B1214"],["Sky","#8BBDE0","#0B1214"],["Peach","#EE9559","#0B1214"],["Pine","#22604A","#F4BC62"]];
+export const songs=["BACKBURNER - NIKI","COUNT ON ME - Bruno Mars","IM FALLING FOR YOU - The 1975","JUST THE WAY YOU ARE - Bruno Mars","LA LA LOST YOU - NIKI","ON BENDED KNEE - Boyz ll Men","SUPER TROUPER - ABBA","YOU! - LANY"];
+const files=["backburner-niki","count-on-me-bruno-mars","im-falling-for-you-the-1975","just-the-way-you-are-bruno-mars","la-la-lost-you-niki","on-bended-knee-boyz-ii-men","super-trouper-abba","you-lany"];
+export const tracks=["Tanpa musik","Lembut","Ceria","Syahdu",...songs];
+const N={1:[523,659,784,659],2:[659,784,988,784,880,784],3:[440,523,659,523,392,523]};let ctx,timer;
+let audio;export function stopMusic(){clearInterval(timer);timer=null;if(audio){audio.pause();audio=null}}
+export function playMusic(i){stopMusic();if(i>=4){if(files[i-4]){audio=new Audio(`/songs/${files[i-4]}.mp3`);audio.loop=true;audio.play().catch(()=>{})}return}if(!N[i])return;ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();let k=0;const tick=()=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type="sine";o.frequency.value=N[i][k++%N[i].length];g.gain.setValueAtTime(.15,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.7);o.connect(g).connect(ctx.destination);o.start();o.stop(ctx.currentTime+.7)};tick();timer=setInterval(tick,i===2?380:620)}
