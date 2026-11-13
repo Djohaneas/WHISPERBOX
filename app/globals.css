@@ -1,5 +1,11 @@
 @tailwind base;@tailwind components;@tailwind utilities;
 html{scroll-behavior:smooth}body{@apply bg-sage font-body text-ink antialiased}
+@layer components{
 .card{@apply rounded-[40px] transition-transform duration-300 hover:-translate-y-1}
 .pill{@apply inline-flex items-center justify-center rounded-full font-display transition hover:scale-105 active:scale-95}
+}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.hero-wrap{container-type:inline-size}
+.hero-title{font-size:clamp(56px,20vw,170px);font-size:clamp(56px,23.5cqw,260px)}
+.no-sb{scrollbar-width:none}.no-sb::-webkit-scrollbar{display:none}
