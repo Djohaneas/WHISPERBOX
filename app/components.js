@@ -22,7 +22,7 @@ return <><header className="relative flex items-center justify-between px-2 py-3
 {contact&&<Contact onClose={()=>setContact(false)}/>}</>}
 export function Footer(){const [contact,setContact]=useState(false);
 return <footer className="mt-3 px-3 py-6 text-sm"><div className="flex flex-wrap items-center justify-between gap-4"><Logo/><nav aria-label="Menu footer" className="flex flex-wrap gap-x-5 gap-y-2 font-medium">{links.map(([t,h])=><Link key={t} href={h} className="hover:underline">{t}</Link>)}<button onClick={()=>setContact(true)} className="hover:underline">Contact Person</button></nav></div>
-<p className="mt-4 text-xs opacity-70">© {new Date().getFullYear()} WhisperBox · SMAN 1 Purwakarta (SMANSA) Confessions</p><p className="mt-1 text-xs opacity-60"></p>
+<p className="mt-4 text-xs opacity-70">© {new Date().getFullYear()} WhisperBox · Confessions Website</p><p className="mt-1 text-xs opacity-60"></p>
 {contact&&<Contact onClose={()=>setContact(false)}/>}</footer>}
 export const Shell=({children})=><main className="mx-auto min-h-screen max-w-[1080px] bg-sage p-3 sm:p-4"><Nav/>{children}<Footer/></main>;
 export const ago=t=>{const s=(Date.now()-t)/1000;return s<60?"baru saja":s<3600?`${~~(s/60)} mnt lalu`:s<86400?`${~~(s/3600)} jam lalu`:`${~~(s/86400)} hari lalu`};
